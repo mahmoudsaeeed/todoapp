@@ -1,0 +1,2 @@
+D:/Projects/Mobile_Apps/2025/todo2/android/app/.cxx/RelWithDebInfo/1424y56v/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/Projects/Mobile_Apps/2025/todo2/android/app/.cxx/RelWithDebInfo/1424y56v/armeabi-v7a/CMakeFiles/rebuild_cache.dir
