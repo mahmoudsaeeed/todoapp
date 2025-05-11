@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:todo2/features/category/presenter/view/widgets/category_chip_widget.dart';
 import 'package:todo2/features/category/presenter/view_model/cubit/getCategories/get_categories_cubit.dart';
 
+import '../../../../task/presenter/view_model/cubit/getTask/get_tasks_cubit.dart';
 import '../../view_model/provider/category_choice_provider.dart';
 
 class CategoryChipListWidget extends StatefulWidget {
@@ -53,6 +54,9 @@ class _CategoryChipListWidgetState extends State<CategoryChipListWidget> {
                               listen: false)
                           .setSelectedChoice(
                               state.categories[_selectedChipIndex].name);
+
+                          BlocProvider.of<GetTasksCubit>(context).getFilteredData(categoryName:state.categories[_selectedChipIndex].name );
+
                     });
                   },
                 ),

@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo2/core/constants.dart';
 import 'package:todo2/features/task/data/model/task_model.dart';
 import 'package:todo2/features/task/data/repo/task_repo.dart';
 
@@ -11,7 +12,7 @@ class GetTasksCubit extends Cubit<GetTasksState> {
   getFilteredData({String? categoryName}) {
     emit(GetTasksLoading());
     try {
-      if (categoryName == null) {
+      if (categoryName == null || categoryName == defaultCategory.name) {
         emit(GetTasksSuccess(tasks: repo.getAllModels()));
       }
       else {
