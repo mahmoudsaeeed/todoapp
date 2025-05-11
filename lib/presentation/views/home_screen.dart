@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 import 'package:todo2/features/category/data/repo/category_repo.dart';
 import 'package:todo2/features/task/data/repo/task_repo.dart';
 
 import '../../core/di.dart';
 import '../../features/category/presenter/view/widgets/category_part_widget.dart';
 import '../../features/category/presenter/view_model/cubit/getCategories/get_categories_cubit.dart';
-import '../../features/category/presenter/view_model/provider/category_choice_provider.dart';
 import '../../features/task/presenter/view/widgets/tasks_part_widget.dart';
 import '../../features/task/presenter/view_model/cubit/getTask/get_tasks_cubit.dart';
 
@@ -29,15 +27,12 @@ class HomeScreen extends StatelessWidget {
               create: (context) => GetTasksCubit(repo: getIt<TaskRepo>()),
             ),
           ],
-          child: ChangeNotifierProvider(
-            create: (context) => CategoryChoiceProvider(),
-            child: const SingleChildScrollView(
-              child: Column(
-                children: [
-                  CategoryPartWidget(),
-                  TasksPartWidget(),
-                ],
-              ),
+          child: const SingleChildScrollView(
+            child: Column(
+              children: [
+                CategoryPartWidget(),
+                TasksPartWidget(),
+              ],
             ),
           ),
         ),
