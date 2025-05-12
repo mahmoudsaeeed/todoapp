@@ -15,8 +15,11 @@ void dI() {
 
 //////////////////////////////////////////////////////////////
 ///? Tasks getIt
+///
+///? DataSource
   getIt.registerLazySingleton<TaskDataSource>(() => TaskDataSource());
 
+  //? Repo
   getIt.registerLazySingleton<TaskRepo>(
     () => TaskRepo(dataSource: getIt<TaskDataSource>()),
   );

@@ -10,8 +10,8 @@ class TaskDataSource {
   }
 
 
-  Future<void> deleteAt(int index) async {
-    box.deleteAt(index);
+  Future<void> delete(int index) async {
+    box.delete(index);
   }
 
 

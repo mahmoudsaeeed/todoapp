@@ -1,5 +1,5 @@
 class TaskModel {
-  // final int id;
+  final int id;
   final String title;
   final String? description;
   final String? dueDate;
@@ -9,7 +9,7 @@ class TaskModel {
   // final int categoryColor;
 
   TaskModel({
-    // required this.id,
+    required this.id,
     required this.title,
     this.description,
     this.dueDate,

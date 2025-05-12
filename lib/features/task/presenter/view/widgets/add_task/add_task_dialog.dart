@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo2/core/constants.dart';
@@ -8,6 +7,8 @@ import 'package:todo2/features/task/presenter/view_model/cubit/add_task/add_task
 import 'package:todo2/features/task/presenter/view_model/cubit/getTask/get_tasks_cubit.dart';
 import 'package:todo2/features/task/presenter/view/widgets/add_task/add_task_category_widget.dart';
 import 'package:todo2/features/task/presenter/view/widgets/add_task/add_task_date_widget.dart';
+
+import '../../../../../../core/shared/methods.dart';
 
 class AddTaskDialog extends StatefulWidget {
   const AddTaskDialog({super.key});
@@ -26,7 +27,6 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
     taskNameController = TextEditingController();
     taskCategoryController = TextEditingController(text: defaultCategory.name);
     taskDateController = TextEditingController();
-
   }
 
   @override
@@ -53,7 +53,8 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
             ),
           );
           if (context.mounted) {
-            BlocProvider.of<GetTasksCubit>(context).getFilteredData(categoryName: taskCategoryController.text.trim());
+            BlocProvider.of<GetTasksCubit>(context).getFilteredData(
+                categoryName: taskCategoryController.text.trim());
             if (Navigator.canPop(context)) {
               Navigator.popUntil(context, (route) => route.isFirst);
             }
@@ -86,10 +87,13 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  TaskModel newTask = _buildTask();
+                  final cubit = context.read<AddTaskCubit>();
+                  final box = cubit.repo.dataSource.box;
+                  final idTask = TaskBox.getTheNextValidIndexInBox(box);
+                  TaskModel newTask = _buildTask(idTask);
+                  cubit.addTask(newTask);
 
-                  BlocProvider.of<AddTaskCubit>(context).addTask(newTask);
-                  ///? when added happened , 
+                  ///? when added happened ,
                   ///? the BlocConsumer in the top of file will refresh the tasks and redirect to home
                 },
                 child: const Text("Add"),
@@ -101,8 +105,9 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
     );
   }
 
-  TaskModel _buildTask() {
+  TaskModel _buildTask(int taskId) {
     TaskModel newTask = TaskModel(
+      id: taskId + 1,
       title: taskNameController.text.trim(),
       createdAt: DateTime.now().toIso8601String(),
       categoryName: taskCategoryController.text,

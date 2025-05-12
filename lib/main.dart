@@ -22,8 +22,8 @@ void main() async {
 }
 
 Future<void> initHive() async {
-  final path = await getApplicationDocumentsDirectory();
   Bloc.observer = CubitObserver();
+  final path = await getApplicationDocumentsDirectory();
   await Hive.initFlutter(path.path);
   if (!Hive.isAdapterRegistered(1)) {
     Hive.registerAdapter(TaskModelAdapter());
