@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo2/core/shared/style.dart';
 import 'package:todo2/features/category/presenter/view/widgets/add_category_alert_dialog_widget.dart';
 import 'package:todo2/features/category/presenter/view_model/cubit/getCategories/get_categories_cubit.dart';
 
@@ -15,15 +15,16 @@ class AddCategoryIconWidget extends StatefulWidget {
 class _AddCategoryIconWidgetState extends State<AddCategoryIconWidget> {
   @override
   Widget build(BuildContext context) {
-        final getCategoriesCubit = context.read<GetCategoriesCubit>();
+    final getCategoriesCubit = context.read<GetCategoriesCubit>();
 
     return CircleAvatar(
       child: IconButton(
+        style: ButtonsStyle.add,
         onPressed: () async {
           showDialog(
             context: context,
             builder: (_) {
-              ///? we use [GetCategoriesCubit] here 
+              ///? we use [GetCategoriesCubit] here
               ///? to refresh categories List in home screen after added
               return BlocProvider.value(
                 value: getCategoriesCubit,

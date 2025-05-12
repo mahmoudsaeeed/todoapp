@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todo2/features/task/presenter/view/widgets/add_task/add_task_icon_widget.dart';
+import 'package:todo2/core/shared/style.dart';
+import 'package:todo2/features/task/presenter/view/widgets/task_part_headline_widget.dart';
 import 'package:todo2/features/task/presenter/view/widgets/tasks_list_widget.dart';
 
 class TasksPartWidget extends StatelessWidget {
@@ -7,11 +8,14 @@ class TasksPartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      children: [
-        AddTaskIconWidget(),
-        TasksListWidget(),
-      ],
+    return Container(
+      decoration: DecorationsStyle.taskPartDecorationInHome,
+      child: const Column(
+        children: [
+          TaskPartHeadlineWidget(),
+          TasksListWidget(),
+        ],
+      ),
     );
   }
 }

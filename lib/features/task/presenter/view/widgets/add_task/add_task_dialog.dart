@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo2/core/constants.dart';
+import 'package:todo2/core/shared/style.dart';
 import 'package:todo2/core/shared/widgets/custom_text_form_field.dart';
 import 'package:todo2/features/task/data/model/task_model.dart';
 import 'package:todo2/features/task/presenter/view_model/cubit/add_task/add_task_cubit.dart';
@@ -39,9 +40,12 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
           await showDialog(
             context: context,
             builder: (context) => AlertDialog(
+              alignment: Alignment.center,
               title: const Text("Task Added successfully"),
+              actionsAlignment: MainAxisAlignment.center,
               actions: [
                 ElevatedButton(
+                    style: ButtonsStyle.buttonInDialog,
                     onPressed: () {
                       Navigator.popUntil(
                         context,
@@ -66,7 +70,11 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
         }
       },
       child: AlertDialog(
-        title: const Text("Add Task"),
+        title: const Text(
+          "Add Task",
+          style: FontsStyle.h2,
+          textAlign: TextAlign.center,
+        ),
         content: SizedBox(
           width: double.maxFinite, // مهم علشان تمنع overflow
           child: ListView(
@@ -86,6 +94,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
                 taskDateController: taskDateController,
               ),
               ElevatedButton(
+                style: ButtonsStyle.buttonInDialog,
                 onPressed: () {
                   final cubit = context.read<AddTaskCubit>();
                   final box = cubit.repo.dataSource.box;

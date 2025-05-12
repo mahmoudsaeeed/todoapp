@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:todo2/core/constants.dart';
 import 'package:todo2/core/di.dart';
 import 'package:todo2/core/shared/methods.dart';
+import 'package:todo2/core/shared/style.dart';
 import 'package:todo2/features/task/data/data_source/task_data_source.dart';
 import 'package:todo2/features/task/data/model/task_model.dart';
 import 'package:todo2/features/task/presenter/view_model/cubit/delete_task/delete_task_cubit.dart';
@@ -44,17 +45,26 @@ class _TaskTileWidgetState extends State<TaskTileWidget> {
           return await showDialog<bool>(
             context: context,
             builder: (context) => AlertDialog(
-              title: const Text("Are you sure ? "),
-              content:
-                  Text("You want to delete the task ${widget.myTask.title}"),
+              title: const Text(
+                "Are you sure ? ",
+                style: FontsStyle.h2,
+                textAlign: TextAlign.center,
+              ),
+              content: Text(
+                "You want to delete the task [ ${widget.myTask.title} ]",
+              ),
+                            actionsAlignment: MainAxisAlignment.center,
+
               actions: [
                 ElevatedButton(
+                  style: ButtonsStyle.buttonInDialog,
                   onPressed: () {
                     Navigator.pop(context, true);
                   },
                   child: const Text("delete"),
                 ),
                 ElevatedButton(
+                  style: ButtonsStyle.cancleInDialog,
                   onPressed: () {
                     Navigator.pop(context, false);
                   },

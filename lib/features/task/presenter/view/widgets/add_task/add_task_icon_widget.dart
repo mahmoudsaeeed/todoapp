@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo2/core/di.dart';
+import 'package:todo2/core/shared/style.dart';
 import 'package:todo2/features/category/presenter/view_model/cubit/getCategories/get_categories_cubit.dart';
 import 'package:todo2/features/task/data/repo/task_repo.dart';
 import 'package:todo2/features/task/presenter/view/widgets/add_task/add_task_dialog.dart';
@@ -15,7 +16,8 @@ class AddTaskIconWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final getCategoriesCubit = context.read<GetCategoriesCubit>();
     final getTasksCubit = context.read<GetTasksCubit>();
-    return IconButton(
+    return IconButton.outlined(
+      style: ButtonsStyle.add,
       onPressed: () {
         // showBigDialog(context);
         // showDatePicker(

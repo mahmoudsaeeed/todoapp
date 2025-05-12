@@ -1,8 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:todo2/core/di.dart';
+import 'package:todo2/core/shared/style.dart';
 import 'package:todo2/core/shared/widgets/custom_text_form_field.dart';
 import 'package:todo2/features/category/data/repo/category_repo.dart';
 import 'package:todo2/features/category/presenter/view_model/cubit/getCategories/get_categories_cubit.dart';
@@ -42,7 +42,11 @@ class _AddCategoryAlertDialogWidgetState
       child: Builder(
         builder: (context) {
           return AlertDialog(
-            title: const Text("Add Category"),
+            title: const Text(
+              "Add Category",
+              style: FontsStyle.h2,
+              textAlign: TextAlign.center,
+            ),
             content: SingleChildScrollView(
               keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               child: Column(
@@ -55,9 +59,17 @@ class _AddCategoryAlertDialogWidgetState
                     readOnly: true,
                     decoration: InputDecoration(
                         suffixIcon: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.only(
+                          topRight: Radius.zero,
+                          topLeft: Radius.circular(30),
+                          bottomRight: Radius.zero,
+                          bottomLeft: Radius.circular(20),
+                        ),
+                        color: Color(int.tryParse(catColorController.text) ??
+                            pickerColor.toARGB32()),
+                      ),
                       width: 20,
-                      color: Color(int.tryParse(catColorController.text) ??
-                          pickerColor.toARGB32()),
                     )),
                     onTap: () {
                       setState(() {
@@ -83,6 +95,7 @@ class _AddCategoryAlertDialogWidgetState
 
                   /// ? simple of choosed color
                   TextButton.icon(
+                    style: ButtonsStyle.buttonInDialog,
                     onPressed: () async {
                       if (catNameController.text.isEmpty) {
                         ScaffoldMessenger.of(context)

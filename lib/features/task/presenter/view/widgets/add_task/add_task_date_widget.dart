@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/shared/widgets/custom_text_form_field.dart';
@@ -23,6 +22,7 @@ class _AddTaskDateWidgetState extends State<AddTaskDateWidget> {
         CustomTextFormField(
           readOnly: true,
           controller: widget.taskDateController,
+          suffix: const Icon(Icons.calendar_month_outlined),
           hintText: "Press to set deadline",
           onTap: () async {
             setState(() {
@@ -40,7 +40,6 @@ class _AddTaskDateWidgetState extends State<AddTaskDateWidget> {
               onDateChanged: (value) {
                 widget.taskDateController.text = value.toString().split(' ')[0];
               },
-
             ),
           ),
       ],
