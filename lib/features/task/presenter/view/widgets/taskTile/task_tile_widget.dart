@@ -3,15 +3,16 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo2/core/constants.dart';
-import 'package:todo2/core/di.dart';
-import 'package:todo2/core/shared/methods.dart';
-import 'package:todo2/core/shared/style.dart';
+import 'package:todo2/core/di/dependency_injection.dart';
+import 'package:todo2/core/methods/task_box_methods.dart';
 import 'package:todo2/features/task/data/data_source/task_data_source.dart';
 import 'package:todo2/features/task/data/model/task_model.dart';
 import 'package:todo2/features/task/presenter/view_model/cubit/delete_task/delete_task_cubit.dart';
 import 'package:todo2/features/task/presenter/view_model/cubit/getTask/get_tasks_cubit.dart';
 import 'package:todo2/features/task/presenter/view_model/provider/task_time_provider.dart';
 import 'package:todo2/features/task/presenter/view/widgets/taskTile/task_tile_time_widget.dart';
+
+import '../../../../../../core/theme/custom_decorations.dart';
 
 class TaskTileWidget extends StatefulWidget {
   const TaskTileWidget({super.key, required this.myTask});
@@ -45,26 +46,25 @@ class _TaskTileWidgetState extends State<TaskTileWidget> {
           return await showDialog<bool>(
             context: context,
             builder: (context) => AlertDialog(
-              title: const Text(
+              title:  Text(
                 "Are you sure ? ",
-                style: FontsStyle.h2,
+              style: Theme.of(context).textTheme.headlineMedium,
                 textAlign: TextAlign.center,
               ),
               content: Text(
                 "You want to delete the task [ ${widget.myTask.title} ]",
               ),
-                            actionsAlignment: MainAxisAlignment.center,
-
+              actionsAlignment: MainAxisAlignment.center,
               actions: [
                 ElevatedButton(
-                  style: ButtonsStyle.buttonInDialog,
+                  // style: ButtonsStyle.buttonInDialog,
                   onPressed: () {
                     Navigator.pop(context, true);
                   },
                   child: const Text("delete"),
                 ),
                 ElevatedButton(
-                  style: ButtonsStyle.cancleInDialog,
+                  // style: ButtonsStyle.cancleInDialog,
                   onPressed: () {
                     Navigator.pop(context, false);
                   },
@@ -77,6 +77,7 @@ class _TaskTileWidgetState extends State<TaskTileWidget> {
         onDismissed: (direction) {
           context.read<DeleteTaskCubit>().deleteTask(taskId: widget.myTask.id);
           context.read<GetTasksCubit>().getFilteredData();
+
         },
         background: Container(
           color: Colors.red,
@@ -85,10 +86,7 @@ class _TaskTileWidgetState extends State<TaskTileWidget> {
         key: ObjectKey(widget.myTask),
         child: Container(
           margin: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: Colors.cyan,
-            borderRadius: BorderRadius.circular(10),
-          ),
+          decoration:( Theme.of(context).extension<CustomDecorations>()!).taskTileBox,
           child: ListTile(
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

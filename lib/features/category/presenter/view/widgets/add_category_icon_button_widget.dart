@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo2/core/shared/style.dart';
 import 'package:todo2/features/category/presenter/view/widgets/add_category_alert_dialog_widget.dart';
 import 'package:todo2/features/category/presenter/view_model/cubit/getCategories/get_categories_cubit.dart';
 
@@ -19,7 +18,7 @@ class _AddCategoryIconWidgetState extends State<AddCategoryIconWidget> {
 
     return CircleAvatar(
       child: IconButton(
-        style: ButtonsStyle.add,
+        // style: ButtonsStyle.add,
         onPressed: () async {
           showDialog(
             context: context,

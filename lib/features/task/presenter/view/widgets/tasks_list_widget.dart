@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:todo2/core/di.dart';
+import 'package:todo2/core/di/dependency_injection.dart';
 import 'package:todo2/features/task/data/repo/task_repo.dart';
 import 'package:todo2/features/task/presenter/view_model/cubit/delete_task/delete_task_cubit.dart';
 import 'package:todo2/features/task/presenter/view_model/cubit/getTask/get_tasks_cubit.dart';
@@ -33,6 +33,7 @@ class _TasksListWidgetState extends State<TasksListWidget> {
         return state is GetTasksSuccess
             ? ListView.builder(
                 shrinkWrap: true,
+                
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: (state).tasks.length,
                 itemBuilder: (context, index) {

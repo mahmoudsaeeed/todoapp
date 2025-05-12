@@ -1,5 +1,5 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:todo2/core/shared/style.dart';
 
 import 'add_task/add_task_icon_widget.dart';
 
@@ -10,14 +10,14 @@ class TaskPartHeadlineWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: const Row(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             "Tasks",
-            style: FontsStyle.h2,
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
-          AddTaskIconWidget(),
+          const AddTaskIconWidget(),
         ],
       ),
     );

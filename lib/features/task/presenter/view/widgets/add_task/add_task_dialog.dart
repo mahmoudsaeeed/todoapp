@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo2/core/constants.dart';
-import 'package:todo2/core/shared/style.dart';
-import 'package:todo2/core/shared/widgets/custom_text_form_field.dart';
+import 'package:todo2/presentation/widgets/custom_text_form_field.dart';
 import 'package:todo2/features/task/data/model/task_model.dart';
 import 'package:todo2/features/task/presenter/view_model/cubit/add_task/add_task_cubit.dart';
 import 'package:todo2/features/task/presenter/view_model/cubit/getTask/get_tasks_cubit.dart';
 import 'package:todo2/features/task/presenter/view/widgets/add_task/add_task_category_widget.dart';
 import 'package:todo2/features/task/presenter/view/widgets/add_task/add_task_date_widget.dart';
 
-import '../../../../../../core/shared/methods.dart';
+import '../../../../../../core/methods/task_box_methods.dart';
 
 class AddTaskDialog extends StatefulWidget {
   const AddTaskDialog({super.key});
@@ -45,7 +44,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
               actionsAlignment: MainAxisAlignment.center,
               actions: [
                 ElevatedButton(
-                    style: ButtonsStyle.buttonInDialog,
+                    // style: ButtonsStyle.buttonInDialog,
                     onPressed: () {
                       Navigator.popUntil(
                         context,
@@ -70,9 +69,9 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
         }
       },
       child: AlertDialog(
-        title: const Text(
+        title:  Text(
           "Add Task",
-          style: FontsStyle.h2,
+              style: Theme.of(context).textTheme.headlineMedium,
           textAlign: TextAlign.center,
         ),
         content: SizedBox(
@@ -94,7 +93,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
                 taskDateController: taskDateController,
               ),
               ElevatedButton(
-                style: ButtonsStyle.buttonInDialog,
+                // style: ButtonsStyle.buttonInDialog,
                 onPressed: () {
                   final cubit = context.read<AddTaskCubit>();
                   final box = cubit.repo.dataSource.box;

@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:todo2/core/shared/methods.dart';
+import 'package:todo2/core/methods/task_box_methods.dart';
 import 'package:todo2/features/task/data/data_source/task_data_source.dart';
 import 'package:todo2/features/task/data/model/task_model.dart';
 

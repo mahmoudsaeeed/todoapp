@@ -1,27 +1,50 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo2/features/category/data/repo/category_repo.dart';
 import 'package:todo2/features/task/data/repo/task_repo.dart';
+import 'package:todo2/presentation/view_model/cubit/theme_cubit.dart';
 
-import '../../core/di.dart';
-import '../../core/shared/style.dart';
+import '../../core/di/dependency_injection.dart';
 import '../../features/category/presenter/view/widgets/category_part_widget.dart';
 import '../../features/category/presenter/view_model/cubit/getCategories/get_categories_cubit.dart';
 import '../../features/task/presenter/view/widgets/tasks_part_widget.dart';
 import '../../features/task/presenter/view_model/cubit/getTask/get_tasks_cubit.dart';
 
-class TaskScreen extends StatelessWidget {
+class TaskScreen extends StatefulWidget {
   const TaskScreen({super.key});
 
+  @override
+  State<TaskScreen> createState() => _TaskScreenState();
+}
+
+class _TaskScreenState extends State<TaskScreen> {
+  bool isDark = true;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text(
+          
+          title: Text(
             "My Tasks",
-            style: FontsStyle.h1,
+            style: Theme.of(context).textTheme.headlineLarge,
           ),
+          actions: [
+            Switch(
+              value: isDark,
+              onChanged: (newTheme) {
+                final cubit = context.read<ThemeCubit>();
+                setState(() {
+                  isDark = newTheme;
+                  cubit.changeTheme(
+                      isDark ? ThemeModeOption.dark : ThemeModeOption.light);
+                  log("Current mode is ${cubit.loadTheme().runtimeType}");
+                });
+              },
+            )
+          ],
         ),
         body: MultiBlocProvider(
           providers: [

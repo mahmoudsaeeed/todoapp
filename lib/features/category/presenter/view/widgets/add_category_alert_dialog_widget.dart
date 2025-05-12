@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:todo2/core/di.dart';
-import 'package:todo2/core/shared/style.dart';
-import 'package:todo2/core/shared/widgets/custom_text_form_field.dart';
+import 'package:todo2/core/di/dependency_injection.dart';
+import 'package:todo2/presentation/widgets/custom_text_form_field.dart';
 import 'package:todo2/features/category/data/repo/category_repo.dart';
 import 'package:todo2/features/category/presenter/view_model/cubit/getCategories/get_categories_cubit.dart';
 
@@ -42,9 +41,9 @@ class _AddCategoryAlertDialogWidgetState
       child: Builder(
         builder: (context) {
           return AlertDialog(
-            title: const Text(
+            title:  Text(
               "Add Category",
-              style: FontsStyle.h2,
+              style: Theme.of(context).textTheme.headlineMedium,
               textAlign: TextAlign.center,
             ),
             content: SingleChildScrollView(
@@ -94,8 +93,8 @@ class _AddCategoryAlertDialogWidgetState
                       : Container(),
 
                   /// ? simple of choosed color
-                  TextButton.icon(
-                    style: ButtonsStyle.buttonInDialog,
+                  ElevatedButton.icon(
+                    // style: ButtonsStyle.buttonInDialog,
                     onPressed: () async {
                       if (catNameController.text.isEmpty) {
                         ScaffoldMessenger.of(context)
