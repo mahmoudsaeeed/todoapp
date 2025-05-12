@@ -10,8 +10,8 @@ import '../../features/category/presenter/view_model/cubit/getCategories/get_cat
 import '../../features/task/presenter/view/widgets/tasks_part_widget.dart';
 import '../../features/task/presenter/view_model/cubit/getTask/get_tasks_cubit.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class TaskScreen extends StatelessWidget {
+  const TaskScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

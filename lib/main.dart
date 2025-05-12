@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       onGenerateRoute: onGenerateRoute,
-      initialRoute: homeScreen,
+      initialRoute: taskScreen,
       // home: Scaffold(
       //   body: Center(
       //     child: ElevatedButton(onPressed: (){

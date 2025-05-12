@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:todo2/core/constants.dart';
-import 'package:todo2/presentation/views/home_screen.dart';
+import 'package:todo2/presentation/views/task_screen.dart';
 
 Route? onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
-    case homeScreen:
+    case taskScreen:
       return MaterialPageRoute(
-        builder: (context) => const HomeScreen(),
+        builder: (context) => const TaskScreen(),
       );
-
+    
     default:
       MaterialPageRoute(
         builder: (context) {
