@@ -13,7 +13,7 @@ class AddTaskIconWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final getCategoriesCubit = context.read<GetCategoriesCubit>();
+    // final getCategoriesCubit = context.read<GetCategoriesCubit>();
     final getTasksCubit = context.read<GetTasksCubit>();
     return IconButton.outlined(
       // style: ButtonsStyle.add,
@@ -32,7 +32,7 @@ class AddTaskIconWidget extends StatelessWidget {
               /// ? display the list of categories in Category Field in adding Task
               /// ? used .value bc I created it before in another widget
               BlocProvider<GetCategoriesCubit>.value(
-                value: getCategoriesCubit,
+                value: getIt<GetCategoriesCubit>(),
               ),
 
               ///? used to refresh the list of tasks after add the task

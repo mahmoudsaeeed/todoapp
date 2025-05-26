@@ -18,7 +18,7 @@ class CategoryRepo {
 
 
   
-  Future<void> deleteModelAt(int index) async{
-    await dataSource.deleteAt(index);
+  Future<void> deleteModel(int index) async{
+    await dataSource.delete(index);
   }
 }

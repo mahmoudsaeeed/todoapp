@@ -8,34 +8,30 @@ class CategoryPartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      padding: const EdgeInsets.only(left: 15),
       height: 150,
-      // decoration: DecorationsStyle.categoryPartDecorationInHome,
-      child: Container(
-        margin: const EdgeInsets.only(left: 15),
-        height: 150,
-        decoration:
-            (Theme.of(context).extension<CustomDecorations>()!).taskPartBox,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              "Category",
-              style: Theme.of(context).textTheme.headlineMedium,
+      decoration:
+          (Theme.of(context).extension<CustomDecorations>()!).categoryPartBox,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            "Category",
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
+          const SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                AddCategoryIconWidget(),
+                CategoryChipListWidget(),
+              ],
             ),
-            const SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  AddCategoryIconWidget(),
-                  CategoryChipListWidget(),
-                ],
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

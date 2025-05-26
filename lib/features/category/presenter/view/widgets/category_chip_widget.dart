@@ -1,4 +1,3 @@
-
 import 'package:chips_choice/chips_choice.dart';
 import 'package:flutter/material.dart';
 import 'package:todo2/features/category/data/model/category_model.dart';
@@ -21,21 +20,25 @@ class CategoryChipWidget extends StatelessWidget {
     return ChipsChoice<int>.single(
       value: categoryIndex,
       onChanged: onChanged,
-    
+
       choiceItems: C2Choice.listFrom<int, CategoryModel>(
         source: options,
         value: (index, categoryModel) => index,
         label: (index, categoryModel) => categoryModel.name,
         style: (index, categoryModel) {
           Color myColor = Color(categoryModel.color);
-    
+
           return C2ChipStyle.when(
-            enabled: C2ChipStyle.toned(
-                backgroundColor: myColor,
-                backgroundOpacity: .3,
+            enabled: C2ChipStyle.outlined(
+                color: myColor,
+                
+                // borderColor: myColor,
+                // backgroundColor: myColor,
                 selectedStyle: C2ChipStyle.filled(
-                  color: Color(categoryModel.color),
-                )),
+                    color: Color(categoryModel.color),
+                    foregroundColor: Colors.white),
+                    
+                    ),
           );
         },
       ),
@@ -48,11 +51,11 @@ class CategoryChipWidget extends StatelessWidget {
       //         backgroundColor: Colors.red,
       //       ));
       // }),
-    
+
       // backgroundColor: Color(widget.categoryModel.color),
       // label: Text(widget.categoryModel.name),
       // selected: selectedChipIndex == widget.categoryIndex,
-    
+
       // selectedColor: const Color(0xFF0D538D),
       // checkmarkColor: Colors.white,
       // showCheckmark: false,

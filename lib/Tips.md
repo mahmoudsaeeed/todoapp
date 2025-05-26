@@ -1,3 +1,5 @@
+# What I learned
+
 ## I learn how to use ChipsChoice<T>.single
 410552214
 ### The parent File
@@ -75,6 +77,13 @@
 
 ----------------------------------------------------
 
-custom_decorations.dart
-theme_cubit.dart
+## custom_decorations.dart
+## theme_cubit.dart
 
+
+
+
+## Navigator
+you can pop with two ways
+  - Navigator.popUntil(context , ModalRoute.withName(name))
+  - Navigator.popUntil(context , (route)=>route.isFirst)

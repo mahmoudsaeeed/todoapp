@@ -26,6 +26,12 @@ class TaskRepo {
     return dataSource.getAll();
   }
 
+
+  Future<void> deleteWhere({required String categoryName}) async{
+    await dataSource.deleteWhere(categoryName: categoryName);
+  }
+
+
   ///? get all Tasks and then filtered it depending on [category name]
   List<TaskModel> getFilteredData({required String categoryName}) {
     final List<TaskModel> filteredData = dataSource

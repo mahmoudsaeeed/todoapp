@@ -46,9 +46,9 @@ class _TaskTileWidgetState extends State<TaskTileWidget> {
           return await showDialog<bool>(
             context: context,
             builder: (context) => AlertDialog(
-              title:  Text(
+              title: Text(
                 "Are you sure ? ",
-              style: Theme.of(context).textTheme.headlineMedium,
+                style: Theme.of(context).textTheme.headlineMedium,
                 textAlign: TextAlign.center,
               ),
               content: Text(
@@ -77,7 +77,6 @@ class _TaskTileWidgetState extends State<TaskTileWidget> {
         onDismissed: (direction) {
           context.read<DeleteTaskCubit>().deleteTask(taskId: widget.myTask.id);
           context.read<GetTasksCubit>().getFilteredData();
-
         },
         background: Container(
           color: Colors.red,
@@ -86,13 +85,14 @@ class _TaskTileWidgetState extends State<TaskTileWidget> {
         key: ObjectKey(widget.myTask),
         child: Container(
           margin: const EdgeInsets.all(10),
-          decoration:( Theme.of(context).extension<CustomDecorations>()!).taskTileBox,
+          decoration:
+              (Theme.of(context).extension<CustomDecorations>()!).taskTileBox,
           child: ListTile(
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  widget.myTask.categoryName ?? defaultCategory.name,
+                  widget.myTask.categoryName ?? defaultCategory.name ,
                 ),
                 Text(widget.myTask.isCompleted ? "Done" : "inProgress"),
               ],

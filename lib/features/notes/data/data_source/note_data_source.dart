@@ -1,10 +1,11 @@
+
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:todo2/core/keys.dart';
 import 'package:todo2/features/category/data/model/category_model.dart';
 
-class CategoryDataSource {
+class NoteDataSource {
   late Box<CategoryModel> box;
-  CategoryDataSource() {
+  NoteDataSource() {
     box = Hive.isBoxOpen(MyKeys.categoryBoxKey)
         ? Hive.box<CategoryModel>(MyKeys.categoryBoxKey)
         : Hive.openBox<CategoryModel>(MyKeys.categoryBoxKey)
@@ -14,7 +15,7 @@ class CategoryDataSource {
   }
   Future<int> add(CategoryModel model) async {
     // final lastIndex = box.values.length;
-    // log("categoryDataSource: color = ${model.color}");
+    // log("NoteDataSource: color = ${model.color}");
     return await box.add(
       CategoryModel(
         // id: box.values.last.id + 1,
@@ -30,14 +31,11 @@ class CategoryDataSource {
 
   List<CategoryModel> getAll() {
     List<CategoryModel> categories = box.values.toList();
-
+    
     return categories;
   }
 
-Future<void> delete(int index) async {
-  if (index <= 0) return; // منع حذف العنصر الثابت
-
-  final catKey = box.keyAt(index - 1);
-  await box.delete(catKey);
-}
+  Future<void> deleteAt(int index) async {
+    await box.deleteAt(index);
+  }
 }

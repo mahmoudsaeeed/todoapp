@@ -1,5 +1,5 @@
-
 import 'package:get_it/get_it.dart';
+import 'package:todo2/features/category/presenter/view_model/cubit/getCategories/get_categories_cubit.dart';
 import 'package:todo2/features/task/data/data_source/task_data_source.dart';
 import 'package:todo2/features/category/data/data_source/category_data_source.dart';
 import 'package:todo2/features/category/data/repo/category_repo.dart';
@@ -13,10 +13,14 @@ void dI() {
   getIt.registerLazySingleton<CategoryRepo>(
       () => CategoryRepo(dataSource: getIt<CategoryDataSource>()));
 
+  getIt.registerLazySingleton<GetCategoriesCubit>(
+    () => GetCategoriesCubit(repo: getIt<CategoryRepo>()),
+  );
+
 //////////////////////////////////////////////////////////////
-///? Tasks getIt
-///
-///? DataSource
+  ///? Tasks getIt
+  ///
+  ///? DataSource
   getIt.registerLazySingleton<TaskDataSource>(() => TaskDataSource());
 
   //? Repo
