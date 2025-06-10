@@ -1,41 +1,41 @@
 
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:todo2/core/keys.dart';
-import 'package:todo2/features/category/data/model/category_model.dart';
+// import 'package:hive_flutter/hive_flutter.dart';
+// import 'package:todo2/core/keys.dart';
+// import 'package:todo2/features/category/data/model/category_model.dart';
 
-class NoteDataSource {
-  late Box<CategoryModel> box;
-  NoteDataSource() {
-    box = Hive.isBoxOpen(MyKeys.categoryBoxKey)
-        ? Hive.box<CategoryModel>(MyKeys.categoryBoxKey)
-        : Hive.openBox<CategoryModel>(MyKeys.categoryBoxKey)
-            as Box<CategoryModel>;
+// class NoteDataSource {
+//   late Box<CategoryModel> box;
+//   NoteDataSource() {
+//     box = Hive.isBoxOpen(MyKeys.categoryBoxKey)
+//         ? Hive.box<CategoryModel>(MyKeys.categoryBoxKey)
+//         : Hive.openBox<CategoryModel>(MyKeys.categoryBoxKey)
+//             as Box<CategoryModel>;
 
-    // box.clear();
-  }
-  Future<int> add(CategoryModel model) async {
-    // final lastIndex = box.values.length;
-    // log("NoteDataSource: color = ${model.color}");
-    return await box.add(
-      CategoryModel(
-        // id: box.values.last.id + 1,
-        name: model.name,
-        color: model.color,
-      ),
-    );
-  }
+//     // box.clear();
+//   }
+//   Future<int> add(CategoryModel model) async {
+//     // final lastIndex = box.values.length;
+//     // log("NoteDataSource: color = ${model.color}");
+//     // return await box.add(
+//     //   CategoryModel(
+//     //     // id: box.values.last.id + 1,
+//     //     name: model.name,
+//     //     color: model.color,
+//     //   ),
+//     // );
+//   }
 
-  CategoryModel? getAt(int index) {
-    return box.getAt(index);
-  }
+//   CategoryModel? getAt(int index) {
+//     return box.getAt(index);
+//   }
 
-  List<CategoryModel> getAll() {
-    List<CategoryModel> categories = box.values.toList();
+//   List<CategoryModel> getAll() {
+//     List<CategoryModel> categories = box.values.toList();
     
-    return categories;
-  }
+//     return categories;
+//   }
 
-  Future<void> deleteAt(int index) async {
-    await box.deleteAt(index);
-  }
-}
+//   Future<void> deleteAt(int index) async {
+//     await box.deleteAt(index);
+//   }
+// }

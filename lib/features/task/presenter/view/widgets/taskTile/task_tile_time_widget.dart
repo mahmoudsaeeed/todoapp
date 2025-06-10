@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo2/features/task/presenter/view_model/provider/task_time_provider.dart';
@@ -16,10 +15,16 @@ class _TaskTileTimeWidgetState extends State<TaskTileTimeWidget> {
   Widget build(BuildContext context) {
     return Consumer<TaskTimeProvider>(
       builder: (context, value, child) {
-        Provider.of<TaskTimeProvider>(context);
+        // Provider.of<TaskTimeProvider>(context);
+
         return value.remainingTime != null
             ? CircleAvatar(
-                child: Text(value.remainingTime!),
+                backgroundColor:
+                    value.timerInMinutes! > 10 ? Colors.black : Colors.red,
+                child: Text(
+                  value.remainingTime!,
+                  style: const TextStyle(color: Colors.white),
+                ),
               )
             : Container();
       },

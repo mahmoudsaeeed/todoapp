@@ -5,6 +5,7 @@ import 'package:todo2/core/di/dependency_injection.dart';
 import 'package:todo2/presentation/widgets/custom_text_form_field.dart';
 import 'package:todo2/features/category/data/repo/category_repo.dart';
 import 'package:todo2/features/category/presenter/view_model/cubit/getCategories/get_categories_cubit.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../data/model/category_model.dart';
 import '../../view_model/cubit/addCategory/add_category_cubit.dart';
@@ -102,7 +103,9 @@ class _AddCategoryAlertDialogWidgetState
                           content: Text("Please Enter a category name"),
                         ));
                       } else {
+                        final uuid = const Uuid().v4();
                         CategoryModel newCategory = CategoryModel(
+                          id: uuid,
                           name: catNameController.text.trim(),
                           color: pickerColor.toARGB32(),
                         );

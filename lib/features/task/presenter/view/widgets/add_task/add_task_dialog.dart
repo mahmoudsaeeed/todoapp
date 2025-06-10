@@ -8,7 +8,7 @@ import 'package:todo2/features/task/presenter/view_model/cubit/getTask/get_tasks
 import 'package:todo2/features/task/presenter/view/widgets/add_task/add_task_category_widget.dart';
 import 'package:todo2/features/task/presenter/view/widgets/add_task/add_task_date_widget.dart';
 
-import '../../../../../../core/methods/task_box_methods.dart';
+import 'package:uuid/uuid.dart';
 
 class AddTaskDialog extends StatefulWidget {
   const AddTaskDialog({super.key});
@@ -69,9 +69,9 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
         }
       },
       child: AlertDialog(
-        title:  Text(
+        title: Text(
           "Add Task",
-              style: Theme.of(context).textTheme.headlineMedium,
+          style: Theme.of(context).textTheme.headlineMedium,
           textAlign: TextAlign.center,
         ),
         content: SizedBox(
@@ -96,9 +96,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
                 // style: ButtonsStyle.buttonInDialog,
                 onPressed: () {
                   final cubit = context.read<AddTaskCubit>();
-                  final box = cubit.repo.dataSource.box;
-                  final idTask = TaskBox.getTheNextValidIndexInBox(box);
-                  TaskModel newTask = _buildTask(idTask);
+                  TaskModel newTask = _buildTask();
                   cubit.addTask(newTask);
 
                   ///? when added happened ,
@@ -113,9 +111,10 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
     );
   }
 
-  TaskModel _buildTask(int taskId) {
+  TaskModel _buildTask() {
+    final uuid = const Uuid().v4();
     TaskModel newTask = TaskModel(
-      id: taskId + 1,
+      id: uuid,
       title: taskNameController.text.trim(),
       createdAt: DateTime.now().toIso8601String(),
       categoryName: taskCategoryController.text,

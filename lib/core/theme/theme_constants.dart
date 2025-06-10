@@ -17,6 +17,7 @@
 /// | labelMedium    | 12.0 |   16.0  | medium  |  0.5     |             |
 /// | labelSmall     | 11.0 |   16.0  | medium  |  0.5     |             |
 ///
+library;
 
 
 //* Fonts

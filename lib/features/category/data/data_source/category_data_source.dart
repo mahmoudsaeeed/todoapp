@@ -17,7 +17,7 @@ class CategoryDataSource {
     // log("categoryDataSource: color = ${model.color}");
     return await box.add(
       CategoryModel(
-        // id: box.values.last.id + 1,
+        id: model.id,
         name: model.name,
         color: model.color,
       ),

@@ -5,7 +5,7 @@ class TaskModelAdapter extends TypeAdapter<TaskModel> {
   @override
   TaskModel read(BinaryReader reader) {
     return TaskModel(
-      id: reader.readInt(),
+      id: reader.readString(),
       title: reader.readString(),
       description: reader.read(),
       categoryName: reader.read(),
@@ -20,7 +20,7 @@ class TaskModelAdapter extends TypeAdapter<TaskModel> {
 
   @override
   void write(BinaryWriter writer, TaskModel obj) {
-    writer.writeInt(obj.id);
+    writer.writeString(obj.id);
     writer.writeString(obj.title);
     writer.write(obj.description);
     writer.write(obj.categoryName);

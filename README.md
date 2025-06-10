@@ -11,7 +11,6 @@ and also create light and dark theme modes,
 
 ### project Archetcture
 
-  =================================
   lib
   |_ core
   |  |_ depenency injection

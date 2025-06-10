@@ -11,8 +11,9 @@ class TaskDataSource {
     return await box.add(model);
   }
 
-  Future<void> delete(int index) async {
-    box.delete(index);
+  Future<void> delete(int taskIndex) async {
+    final int taskKey = box.keyAt(taskIndex);
+    box.delete(taskKey);
   }
 
   List<TaskModel> getAll() {
@@ -25,8 +26,7 @@ class TaskDataSource {
 
   Future<void> deleteWhere({
     required String categoryName,
-  })async {
-
+  }) async {
     final keys = box.keys.where(
       (key) {
         final task = box.get(key);
@@ -34,7 +34,7 @@ class TaskDataSource {
       },
     ).toList();
 
-    log("You will remove tasks that has keys ${keys}");
-   await box.deleteAll(keys);
+    log("You will remove tasks that has keys $keys");
+    await box.deleteAll(keys);
   }
 }

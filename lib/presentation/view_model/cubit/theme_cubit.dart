@@ -66,9 +66,9 @@ class ThemeCubit extends Cubit<ThemeMode> {
   }
 
   Future<void> changeTheme(ThemeModeOption option) async {
-    emit(_stringToThemeMode(option.name));
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(themeKeyInPref, option.name);
+    emit(_stringToThemeMode(option.name));
   }
 
   ThemeMode _stringToThemeMode(String mode) {

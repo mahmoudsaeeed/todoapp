@@ -5,6 +5,7 @@ class CategoryModelAdapter extends TypeAdapter<CategoryModel> {
   @override
   CategoryModel read(BinaryReader reader) {
     return CategoryModel(
+        id: reader.readString(),
         name: reader.readString(),
         color: reader.readInt());
   }
@@ -14,6 +15,7 @@ class CategoryModelAdapter extends TypeAdapter<CategoryModel> {
 
   @override
   void write(BinaryWriter writer, CategoryModel obj) {
+    writer.writeString(obj.id);
     writer.writeString(obj.name);
     writer.writeInt(obj.color);
   }

@@ -7,5 +7,6 @@ class Pages {
   static const String categoryScreen = 'categoryScreen';
 }
 
-CategoryModel defaultCategory = CategoryModel(name: 'none', color: 00000000);
+CategoryModel defaultCategory =
+    CategoryModel(id: "none", name: 'none', color: 00000000);
 const String themeKeyInPref = 'theme';

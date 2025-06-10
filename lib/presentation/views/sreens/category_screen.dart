@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:todo2/core/di/dependency_injection.dart';
 import 'package:todo2/features/category/data/repo/category_repo.dart';
 import 'package:todo2/features/category/presenter/view_model/cubit/delete_category/delete_category_cubit.dart';

@@ -1,6 +1,3 @@
-import 'dart:developer';
-
-import 'package:todo2/core/methods/task_box_methods.dart';
 import 'package:todo2/features/task/data/data_source/task_data_source.dart';
 import 'package:todo2/features/task/data/model/task_model.dart';
 
@@ -13,16 +10,12 @@ class TaskRepo {
     return await dataSource.add(model);
   }
 
-  Future<void> deleteModel(int taskId) async {
-    log("TaskRepo : delete : taskId : $taskId");
-    final int taskIndex =
-        TaskBox.getTheCurrentTaskIndexInBox(dataSource.box, taskId);
-    log("TaskRepo : delete : taskIndex : $taskIndex");
+  Future<void> deleteModel(int taskIndex) async {
 
     await dataSource.delete(taskIndex);
   }
 
-  List<TaskModel> getAllModels({int? modelIndex}) {
+  List<TaskModel> getAllModels() {
     return dataSource.getAll();
   }
 

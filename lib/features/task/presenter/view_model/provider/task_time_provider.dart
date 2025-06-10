@@ -5,6 +5,7 @@ class TaskTimeProvider with ChangeNotifier {
   String? dueDateString;
   String? remainingTime;
   Timer? _timer;
+  int? timerInMinutes;
 
   TaskTimeProvider({this.dueDateString}) {
     _startTimerIfNeeded();
@@ -66,36 +67,38 @@ class TaskTimeProvider with ChangeNotifier {
       notifyListeners();
       return;
     }
-/// * add duration 1 day to see the current day
-    Duration difference =
-        dueDate.difference(DateTime.now());
+
+    /// * add duration 1 day to see the current day
+    Duration difference = dueDate.difference(DateTime.now());
     if (difference.isNegative) {
-  remainingTime = null;
-} else if (difference.inDays >= 7 && difference.inDays < 30) {
-  int weeks = (difference.inDays / 7).floor();
-  remainingTime = '$weeks W';
-} else if (difference.inHours >= 24) {
-  remainingTime = '${difference.inDays} D';
-} else if (difference.inHours >= 1) {
-  remainingTime = '${difference.inHours} H';
-} else if (difference.inMinutes >= 1) {
-  remainingTime = '${difference.inMinutes} M';
-} else {
-  remainingTime = '${difference.inSeconds} S';
-}
+      remainingTime = null;
+    } else {
+      timerInMinutes = difference.inMinutes;
+      if (difference.inDays >= 7 && difference.inDays < 30) {
+        int weeks = (difference.inDays / 7).floor();
+        remainingTime = '$weeks W';
+      } else if (difference.inHours >= 24) {
+        remainingTime = '${difference.inDays} D';
+      } else if (difference.inHours >= 1) {
+        remainingTime = '${difference.inHours} H';
+      } else if (difference.inMinutes >= 1) {
+        remainingTime = '${difference.inMinutes} M';
+      } else {
+        remainingTime = '${difference.inSeconds} S';
+      }
+    }
 
     notifyListeners();
   }
 
   DateTime? _parseDueDate() {
-  if (dueDateString == null) return null;
-  final parsed = DateTime.tryParse(dueDateString!);
-  if (parsed == null) return null;
+    if (dueDateString == null) return null;
+    final parsed = DateTime.tryParse(dueDateString!);
+    if (parsed == null) return null;
 
-  // نحوله ليكون الساعة 12 منتصف الليل لليوم التالي
-  return DateTime(parsed.year, parsed.month, parsed.day + 1);
-}
-
+    // نحوله ليكون الساعة 12 منتصف الليل لليوم التالي
+    return DateTime(parsed.year, parsed.month, parsed.day + 1);
+  }
 
   @override
   void dispose() {
